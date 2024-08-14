@@ -1,5 +1,4 @@
 import Image from "next/image";
-import styles from "./page.module.css";
 import React from "react";
 import {
   Container,
@@ -13,7 +12,7 @@ import { SignIn } from "@clerk/nextjs";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main>
       <Box sx={{ textAlign: "center", my: 4 }}>
         <Typography variant="h2" component="h1" gutterBottom>
           Welcome to Flashcard SaaS
@@ -25,7 +24,7 @@ export default function Home() {
           variant="contained"
           color="primary"
           sx={{ mt: 2, mr: 2 }}
-          href="/sign-in"
+          href="/sign-up"
         >
           Get Started
         </Button>

@@ -1,26 +1,24 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
-
-  const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY, {
-    apiVersion: "2022-11-15",
-  });
+const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY, {
+  apiVersion: "2022-11-15",
+});
 export async function POST(req) {
-
   try {
-    cconst params = {
-      mode: 'subscription',
-      payment_method_types: ['card'],
+    const params = {
+      mode: "subscription",
+      payment_method_types: ["card"],
       line_items: [
         {
           price_data: {
-            currency: 'usd',
+            currency: "usd",
             product_data: {
-              name: 'Pro subscription',
+              name: "Pro subscription",
             },
             unit_amount: 1000, // $10.00 in cents
             recurring: {
-              interval: 'month',
+              interval: "month",
               interval_count: 1,
             },
           },
@@ -28,18 +26,18 @@ export async function POST(req) {
         },
       ],
       success_url: `${req.headers.get(
-        'Referer',
+        "Referer"
       )}result?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.headers.get(
-        'Referer',
+        "Referer"
       )}result?session_id={CHECKOUT_SESSION_ID}`,
-    }
-    
-    const checkoutSession = await stripe.checkout.sessions.create(params)
-    
+    };
+
+    const checkoutSession = await stripe.checkout.sessions.create(params);
+
     return NextResponse.json(checkoutSession, {
       status: 200,
-    })
+    });
   } catch (error) {
     console.error("Error creating checkout session:", error);
     return new NextResponse(
