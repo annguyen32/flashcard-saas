@@ -33,10 +33,10 @@ export default function Home() {
               <Button color="inherit" href="/sign-up" sx={{ ml: 2 }}>
                 Sign Up
               </Button>
+              <Button color="inherit" href="/generate" sx={{ ml: 2 }}>
+                Generate
+              </Button>
             </SignedOut>
-            <SignIn>
-              <UserButton />
-            </SignIn>
           </Toolbar>
         </AppBar>
 
@@ -46,7 +46,7 @@ export default function Home() {
             my: 8,
             px: 3,
             py: 8,
-            backgroundColor: "#E3F2FD", 
+            backgroundColor: "#E3F2FD",
             borderRadius: 2,
             boxShadow: 3,
           }}
@@ -72,7 +72,7 @@ export default function Home() {
               variant="contained"
               color="primary"
               size="large"
-              sx={{ mr: 2, backgroundColor: "#1976D2" }} 
+              sx={{ mr: 2, backgroundColor: "#1976D2" }}
               href="/sign-up"
             >
               Get Started
@@ -81,7 +81,7 @@ export default function Home() {
               variant="outlined"
               color="primary"
               size="large"
-              sx={{ borderColor: "#1976D2", color: "#1976D2" }} 
+              sx={{ borderColor: "#1976D2", color: "#1976D2" }}
             >
               Learn More
             </Button>
@@ -89,7 +89,12 @@ export default function Home() {
         </Box>
 
         <Box sx={{ my: 8 }}>
-          <Typography variant="h3" gutterBottom textAlign={"center"} sx={{ color: "#white" }}>
+          <Typography
+            variant="h3"
+            gutterBottom
+            textAlign={"center"}
+            sx={{ color: "#white" }}
+          >
             Features
           </Typography>
           <Grid container spacing={4}>
