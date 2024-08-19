@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import {
@@ -11,8 +12,25 @@ import {
 } from "@mui/material";
 import { SignIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Head from "next/head";
+//import getStripe from "@/utils/get-stripe";
 
 export default function Home() {
+  const handleSubmit = async () => {
+    const checkoutSession = await fetch("/api/checkout_sessions", {
+      method: "POST",
+      headers: { origin: "http://localhost:3000" },
+    });
+    const checkoutSessionJson = await checkoutSession.json();
+
+    const stripe = await getStripe();
+    const { error } = await stripe.redirectToCheckout({
+      sessionId: checkoutSessionJson.id,
+    });
+
+    if (error) {
+      console.warn(error.message);
+    }
+  };
   return (
     <main>
       <Container maxWidth="lg">
@@ -33,10 +51,10 @@ export default function Home() {
               <Button color="inherit" href="/sign-up" sx={{ ml: 2 }}>
                 Sign Up
               </Button>
+              <Button color="inherit" href="/generate" sx={{ ml: 2 }}>
+                Generate
+              </Button>
             </SignedOut>
-            <SignIn>
-              <UserButton />
-            </SignIn>
           </Toolbar>
         </AppBar>
 
@@ -46,7 +64,7 @@ export default function Home() {
             my: 8,
             px: 3,
             py: 8,
-            backgroundColor: "#E3F2FD", 
+            backgroundColor: "#E3F2FD",
             borderRadius: 2,
             boxShadow: 3,
           }}
@@ -72,7 +90,7 @@ export default function Home() {
               variant="contained"
               color="primary"
               size="large"
-              sx={{ mr: 2, backgroundColor: "#1976D2" }} 
+              sx={{ mr: 2, backgroundColor: "#1976D2" }}
               href="/sign-up"
             >
               Get Started
@@ -81,7 +99,7 @@ export default function Home() {
               variant="outlined"
               color="primary"
               size="large"
-              sx={{ borderColor: "#1976D2", color: "#1976D2" }} 
+              sx={{ borderColor: "#1976D2", color: "#1976D2" }}
             >
               Learn More
             </Button>
@@ -89,7 +107,12 @@ export default function Home() {
         </Box>
 
         <Box sx={{ my: 8 }}>
-          <Typography variant="h3" gutterBottom textAlign={"center"} sx={{ color: "#white" }}>
+          <Typography
+            variant="h3"
+            gutterBottom
+            textAlign={"center"}
+            sx={{ color: "#white" }}
+          >
             Features
           </Typography>
           <Grid container spacing={4}>
@@ -194,6 +217,7 @@ export default function Home() {
                   Unlimited flashcards and storage, with priority support.
                 </Typography>
                 <Button
+                  onClick={handleSubmit}
                   variant="contained"
                   color="secondary"
                   sx={{ mt: 2, color: "white", backgroundColor: "#64B5F6" }} // Light blue button

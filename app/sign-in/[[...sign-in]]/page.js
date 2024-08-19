@@ -12,5 +12,4 @@ import Link from "next/link";
 
 export default function Page() {
   <div> Hello </div>;
-  return <SignIn />;
 }
