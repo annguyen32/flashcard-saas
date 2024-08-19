@@ -13,6 +13,20 @@ import { SignIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Head from "next/head";
 
 export default function Home() {
+  //Define flashcards here
+  const flashcards = [
+    { question: "What is an algorithm?", answer: "An algorithm is a step-by-step procedure or formula for solving a problem or completing a task." },
+  { question: "What is the difference between a stack and a queue?", answer: "A stack follows Last In, First Out (LIFO) principle, while a queue follows First In, First Out (FIFO) principle." },
+  { question: "What is a binary tree?", answer: "A binary tree is a data structure where each node has at most two children, referred to as the left child and the right child." },
+  { question: "What is Big O notation?", answer: "Big O notation is a mathematical notation used to describe the asymptotic behavior of an algorithm in terms of time and space complexity." },
+  { question: "What is encapsulation in object-oriented programming?", answer: "Encapsulation is an object-oriented programming principle that restricts access to certain components of an object and only allows interaction through well-defined interfaces." },
+  { question: "What is a hash table?", answer: "A hash table is a data structure that maps keys to values using a hash function, allowing for efficient data retrieval." },
+  { question: "What is recursion?", answer: "Recursion is a programming technique where a function calls itself in order to solve a problem. It generally requires a base case to stop the recursive calls." },
+  { question: "What is the purpose of a database index?", answer: "A database index improves the speed of data retrieval operations on a database table by creating a data structure that allows for faster search queries." },
+  { question: "What is the difference between a process and a thread?", answer: "A process is an independent program in execution with its own memory space, while a thread is a smaller unit of a process that shares memory space with other threads of the same process." },
+  { question: "What is the principle of separation of concerns?", answer: "The principle of separation of concerns involves organizing a computer program into distinct sections, each addressing a specific concern or responsibility, to reduce complexity and improve maintainability." }
+  ];
+  
   return (
     <main>
       <Container maxWidth="lg">
@@ -204,6 +218,21 @@ export default function Home() {
             </Grid>
           </Grid>
         </Box>
+      
+        {/* Flashcards section */}
+        <Box sx={{ my: 8, textAlign: "center" }}>
+          <Typography variant="h4" gutterBottom sx={{ color: "#0D47A1" }}>
+            Flashcards
+          </Typography>
+          <Grid container spacing={4}>
+            {flashcards.map((flashcard, index) => (
+              <Grid item xs={12} md={4} key={index}>
+                <Flashcard flashcard={flashcard} />
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      
       </Container>
     </main>
   );
