@@ -1,5 +1,7 @@
+// components/Flashcard.js
+"use client";
 import React from 'react';
-import { Box, Typography, Button, Card, CardContent, CardActions } from '@mui/material';
+import { Card, CardContent, CardActions, Typography, Button } from '@mui/material';
 
 const Flashcard = ({ flashcard }) => {
     const [showAnswer, setShowAnswer] = React.useState(false);
@@ -27,6 +29,6 @@ const Flashcard = ({ flashcard }) => {
         </CardActions>
       </Card>
     );
-  };
-  
-  export default Flashcard;
+};
+
+export default Flashcard;

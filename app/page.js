@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { SignIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Head from "next/head";
+import Flashcard from '../app/Flashcard'; //Flashcards
 
 export default function Home() {
   //Define flashcards here
